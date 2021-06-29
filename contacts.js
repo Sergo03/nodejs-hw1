@@ -37,9 +37,9 @@ const removeContact = async (contactId) => {
         // if (index === -1) {
         //     throw new Error('Id incorrect');
         // }
-        const filterContacts = contacts.filter(item => item.id !== contactId);
+        const filterContacts = contacts.filter(item => item.id.toString() !== contactId.toString());
         
-        // await update(filterContacts);
+        await update(filterContacts);
         console.table(filterContacts);
     } catch (error) {
         console.log(error);
@@ -57,9 +57,9 @@ const addContact = async (name, email, phone) => {
         const data = await fs.readFile(contactsPath);
         const contacts = JSON.parse(data);
         const newContacts = [...contacts, newContact];
-        // await update(newContacts);
-        update(newContacts);
-        console.table(contacts)
+        await update(newContacts);
+        //  update(newContacts);
+        console.table(newContacts)
     }
     catch (error) {
         console.log(error);
