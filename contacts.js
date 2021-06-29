@@ -9,7 +9,6 @@ const listContacts = async () => {
     try {
         const data = await fs.readFile(contactsPath);
         const contacts = JSON.parse(data);
-        // return contacts;
         console.table(contacts);
     }
     catch (error) {
@@ -33,12 +32,7 @@ const removeContact = async (contactId) => {
     try {
         const data = await fs.readFile(contactsPath);
         const contacts = JSON.parse(data);
-        // const index = contacts.findIndex(item => item.id === contactId);
-        // if (index === -1) {
-        //     throw new Error('Id incorrect');
-        // }
         const filterContacts = contacts.filter(item => item.id.toString() !== contactId.toString());
-        
         await update(filterContacts);
         console.table(filterContacts);
     } catch (error) {
@@ -58,7 +52,6 @@ const addContact = async (name, email, phone) => {
         const contacts = JSON.parse(data);
         const newContacts = [...contacts, newContact];
         await update(newContacts);
-        //  update(newContacts);
         console.table(newContacts)
     }
     catch (error) {
